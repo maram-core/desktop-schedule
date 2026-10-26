@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Ethereal Schedule & Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A calm, responsive daily planner built with React and TypeScript. Frosted-glass panels, pastel glows, and a week strip keep your plans in one personal workspace.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Navigate any day using the week strip, day arrows, Today button, or keyboard-accessible calendar modal.
+- Add daily schedule slots with start/end times and Focus, Personal, Wellbeing, or Meeting categories. Mark them complete or delete them. Slots sort by start time; overlapping plans are allowed. Slots must end after they start on the same day.
+- Create nested checklists (up to four subtask levels). Completing a parent completes its descendants; child completion updates the parent. Delete a task to remove its entire branch.
+- See daily completion across checklist items (including parents and subtasks) and schedule slots.
+- Write a separate reflection for each day.
+- Automatically save your plans in this browser's local storage. No account or backend is required. Data does not sync between devices or browsers; clearing site storage removes it. A warning appears if the browser cannot save.
 
-### `npm start`
+## Development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Node.js 24.19.0 and npm 11.9.0 were used for validation.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+npm ci
+npm start
+```
 
-### `npm test`
+The development server uses port 3000. To run without opening a browser:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+CI=true BROWSER=none HOST=127.0.0.1 PORT=3000 npm start
+```
 
-### `npm run build`
+## Validation and production
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+CI=true npm test -- --watchAll=false --runInBand
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The tests cover nested completion, local persistence, daily isolation, calendar navigation, time validation, deletion, and invalid-storage recovery. Production output is written to `build/` and can be hosted by a static web server. Google Fonts are optional; system sans-serif fonts provide a fallback.

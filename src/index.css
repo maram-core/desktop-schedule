@@ -1,13 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "DM Sans", sans-serif;
+  color: #46445a;
+  background: #f5f4f8;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  color: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #9b85c6;
+  outline-offset: 4px;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #b5a1d7;
+  outline-offset: 2px;
+}
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #9c8ac5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+button {
+  transition:
+    background 0.18s,
+    transform 0.18s;
+}
+button:hover {
+  filter: brightness(0.97);
+}
+button:active {
+  transform: translateY(1px);
+}
+::selection {
+  background: #ded2f2;
+}
+a {
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button {
+  border: 0;
+}
+input,
+select,
+textarea {
+  min-width: 0;
+}
+input:not([type="checkbox"]),
+select,
+textarea {
+  border: 1px solid #e4dfed;
+  background: #ffffff91;
+  border-radius: 10px;
+  color: #46445a;
+  padding: 11px 12px;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #a29cab;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

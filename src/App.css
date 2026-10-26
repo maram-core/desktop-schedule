@@ -1,38 +1,903 @@
-.App {
-  text-align: center;
+.app-shell {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 90% 0%, #efe6f885, transparent 50%),
+    radial-gradient(ellipse at 0% 40%, #fce9e480, transparent 50%);
 }
-
-.App-logo {
-  height: 40vmin;
+.ambient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: -1;
   pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ambient-one {
+  width: 480px;
+  height: 480px;
+  background: #e5d9f1;
+  top: 110px;
+  right: -180px;
+  opacity: 0.55;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ambient-two {
+  width: 450px;
+  height: 450px;
+  background: #f8ddd5;
+  top: 580px;
+  left: -230px;
+  opacity: 0.45;
+}
+.ambient-three {
+  width: 380px;
+  height: 380px;
+  background: #dcece5;
+  bottom: 80px;
+  right: -150px;
+  opacity: 0.4;
+}
+.topbar {
+  height: 90px;
+  max-width: 1240px;
+  padding: 0 44px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ded9e449;
+}
+.brand {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Manrope, sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.brand-icon {
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+  color: #a897be;
+  font-weight: 400;
+}
+.brand-dot {
+  color: #aa94c3;
+}
+.topbar-caption {
+  font-size: 12px;
+  color: #9b94a7;
+  letter-spacing: 0.5px;
+}
+.local-badge {
+  font-size: 11px;
+  color: #8c8496;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.local-badge span {
+  height: 6px;
+  width: 6px;
+  background: #9db9a6;
+  border-radius: 50%;
+}
+main {
+  max-width: 1160px;
+  margin: auto;
+  padding: 0 30px;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56px 8px 43px;
+}
+.eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  color: #a098ad;
+}
+.hero h1 {
+  font-family: Manrope, sans-serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -2px;
+  margin: 16px 0;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #a28cb8;
+}
+.hero p {
+  font-size: 12px;
+  color: #9991a4;
+  line-height: 1.8;
+}
+.hero-art {
+  position: relative;
+  width: 290px;
+  height: 190px;
+  margin-right: 75px;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow:
+    inset 15px 10px 30px #fff9,
+    10px 20px 35px #a18dba1f;
+}
+.orb-back {
+  width: 138px;
+  height: 138px;
+  background: linear-gradient(135deg, #f3e4f4, #c6b4df);
+  left: 90px;
+  top: 5px;
+}
+.orb-front {
+  height: 113px;
+  width: 113px;
+  background: linear-gradient(135deg, #fff2e3a1, #e4c8cecc);
+  backdrop-filter: blur(9px);
+  top: 68px;
+  left: 34px;
+  border: 1px solid #fff9;
+}
+.sparkle {
+  position: absolute;
+  color: #b5a1c7;
+}
+.sparkle-one {
+  font-size: 42px;
+  left: 15px;
+  top: 6px;
+}
+.sparkle-two {
+  font-size: 20px;
+  right: 19px;
+  bottom: 34px;
+}
+.art-caption {
+  position: absolute;
+  bottom: 2px;
+  right: 12px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #ac9cb9;
+}
+.glass {
+  background: linear-gradient(125deg, #ffffffb8, #ffffff70);
+  border: 1px solid #fff;
+  border-radius: 20px;
+  box-shadow:
+    0 5px 25px #5d476606,
+    inset 0 1px 0 #fff9;
+  backdrop-filter: blur(20px);
+}
+.date-panel {
+  padding: 24px 28px 18px;
+}
+.date-heading,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.date-heading h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 8px;
+  letter-spacing: -0.5px;
+}
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.soft-button {
+  background: #ede8f566;
+  border: 1px solid #e3dced88;
+  padding: 9px 13px;
+  border-radius: 9px;
+  font-size: 11px;
+  color: #8b7e9e;
+  white-space: nowrap;
+}
+.icon-button {
+  border-radius: 7px;
+  background: transparent;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 20px;
+  line-height: 1;
+  color: #aaa0b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-button:hover {
+  background: #e8e1ee9c;
+}
+.week-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+.day-button {
+  padding: 12px 0 8px;
+  background: transparent;
+  border-radius: 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 9px;
+  border: 1px solid transparent;
+}
+.day-button > span {
+  font-size: 10px;
+  color: #a49aad;
+}
+.day-button strong {
+  font-family: Manrope, sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: #80758f;
+}
+.day-button.active {
+  background: linear-gradient(135deg, #e4d8f0, #eee5f3);
+  border-color: #e0d3ee;
+  box-shadow: 0 5px 15px #9f82b90f;
+}
+.day-button.active > span,
+.day-button.active strong {
+  color: #7a648e;
+}
+.day-button i {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+}
+.day-button .today-dot {
+  background: #ad94c3;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 25px;
+}
+.main-column,
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+.schedule-panel,
+.notes-panel,
+.checklist-panel {
+  padding: 25px;
+}
+.section-heading h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  letter-spacing: -0.3px;
+}
+.section-heading .eyebrow {
+  font-size: 8px;
+  margin-bottom: 10px;
+  display: block;
+}
+.section-icon {
+  height: 29px;
+  width: 29px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border-radius: 9px;
+  font-size: 17px;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+.peach {
+  background: #f7e9e4;
+  color: #c69b8c;
+}
+.lavender {
+  background: #ede5f6;
+  color: #a18bbd;
+}
+.yellow {
+  background: #f8efdb;
+  color: #c5ab76;
+}
+.section-subtitle {
+  font-size: 11px;
+  color: #a49aaf;
+  margin: 13px 0 20px;
+}
+.timeline {
+  min-height: 270px;
+}
+.empty-state {
+  text-align: center;
+  padding: 28px 0 34px;
+}
+.empty-symbol {
+  font-size: 38px;
+  color: #c7b7d8;
+  display: block;
+  margin-bottom: 15px;
+}
+.empty-state h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8f809f;
+}
+.empty-state p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #ada1b9;
+  margin: 10px 0 17px;
+}
+.text-button {
+  background: transparent;
+  color: #9d85b5;
+  font-size: 11px;
+  padding: 8px;
+}
+.panel-footnote {
+  padding-top: 16px;
+  border-top: 1px solid #e9e1ee82;
+  text-align: center;
+  font-size: 10px;
+  color: #b2a4bd;
+}
+.notes-panel textarea {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  resize: vertical;
+  min-height: 110px;
+  padding: 18px 0 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.small-label {
+  font-size: 8px;
+  color: #b4a9bf;
+  letter-spacing: 1.5px;
+}
+.progress-panel {
+  text-align: center;
+  padding: 26px 20px;
+}
+.progress-panel .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.7px;
+}
+.progress-panel h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.progress-ring {
+  margin: 24px auto 19px;
+  width: 139px;
+  height: 139px;
+  border-radius: 50%;
+  padding: 7px;
+  box-shadow: 0 0 30px #c1add91a;
+}
+.progress-ring > div {
+  background: #f9f7fc;
+  border: 4px solid #f3eff7;
+  border-radius: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.progress-ring strong {
+  font-size: 32px;
+  font-family: Manrope, sans-serif;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  color: #9b84b8;
+}
+.progress-ring strong span {
+  font-size: 15px;
+  letter-spacing: 0;
+  margin-left: 2px;
+}
+.progress-ring > div > span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #ac9ab9;
+  margin-top: 4px;
+}
+.progress-panel p {
+  font-size: 11px;
+  color: #9c8aaa;
+}
+.progress-count {
+  display: inline-block;
+  font-size: 10px;
+  color: #b3a4bf;
+  margin-top: 10px;
+}
+.count-pill {
+  background: #eee7f4;
+  border-radius: 7px;
+  min-width: 23px;
+  text-align: center;
+  padding: 4px;
+  font-size: 10px;
+  color: #9e8bb2;
+}
+.inline-form {
+  display: flex;
+  gap: 6px;
+}
+.inline-form input {
+  width: 100%;
+  font-size: 11px;
+  background: #fff7;
+}
+.inline-form button {
+  border-radius: 8px;
+  background: #ebe2f3;
+  color: #a18ab8;
+  padding: 7px 12px;
+}
+.task-entry {
+  margin-bottom: 15px;
+}
+.task-empty {
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+  padding: 18px 0 23px;
+  color: #b0a3ba;
+}
+.task-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+}
+.task-line > span {
+  font-size: 12px;
+  line-height: 1.6;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.task-actions {
+  display: flex;
+  gap: 0;
+}
+.task-actions .icon-button {
+  font-size: 17px;
+  min-width: 23px;
+  min-height: 25px;
+}
+.delete {
+  color: #b8aabf;
+}
+.delete:hover {
+  color: #bd7f91;
+  background: #f6e4eb;
+}
+.is-done .task-line > span,
+.task-line.is-done > span,
+.slot-card.is-done h3 {
+  text-decoration: line-through;
+  color: #b5aabd;
+}
+.subtasks {
+  margin-left: 8px;
+  padding-left: 16px;
+  border-left: 1px solid #e5dbed;
+}
+.subtask-form {
+  margin-left: 25px;
+}
+.subtask-form input {
+  padding: 8px;
+  font-size: 11px;
+}
+.checklist-tip {
+  font-size: 9px;
+  color: #b7a9c1;
+  border-top: 1px solid #e9e1ee82;
+  padding-top: 15px;
+  margin-top: 9px;
+  line-height: 1.8;
+}
+.quote {
+  text-align: center;
+  color: #a493b0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 0 10px 10px;
+}
+.quote > span {
+  display: block;
+  font-size: 34px;
+  height: 33px;
+  color: #c5b4d3;
+}
+.quote i {
+  display: block;
+  font:
+    8px "DM Sans",
+    sans-serif;
+  letter-spacing: 2px;
+  margin-top: 16px;
+  color: #b5a7be;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 40px 0 24px;
+  font-size: 9px;
+  color: #b0a6ba;
+}
+footer [role="status"] {
+  text-align: right;
+}
+.slot-form {
+  background: #eee8f652;
+  border-radius: 12px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.slot-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 10px;
+  color: #9b8ba9;
+}
+.slot-form input,
+.slot-form select {
+  width: 100%;
+  font-size: 11px;
+  padding: 9px;
+}
+.wide {
+  grid-column: 1/-1;
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.primary-button {
+  background: #a38cbb;
   color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 11px;
 }
-
-.App-link {
-  color: #61dafb;
+.error {
+  font-size: 11px;
+  color: #b3667e;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.timeline-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 14px;
+  align-items: stretch;
+}
+.time-label {
+  width: 43px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #998aa8;
+  padding-top: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.time-label span {
+  display: block;
+  font-size: 9px;
+  color: #c0b3ca;
+  margin-top: 8px;
+}
+.slot-card {
+  flex: 1;
+  min-width: 0;
+  border-radius: 12px;
+  padding: 14px 12px 14px 17px;
+  background: #eee6f5;
+  border-left: 3px solid #c4afd9;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.slot-card.personal {
+  background: #f7e9e7;
+  border-color: #e3bab2;
+}
+.slot-card.wellbeing {
+  background: #e7efea;
+  border-color: #b5cbbb;
+}
+.slot-card.meeting {
+  background: #e5edf5;
+  border-color: #b2c6dc;
+}
+.slot-content {
+  flex: 1;
+  min-width: 0;
+}
+.category-label {
+  text-transform: uppercase;
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  color: #a18ab4;
+}
+.slot-content h3 {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 7px 0;
+  overflow-wrap: anywhere;
+}
+.slot-duration {
+  font-size: 9px;
+  color: #aa9ab7;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #4b3a5c40;
+  backdrop-filter: blur(7px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.calendar {
+  background: #f9f6fded;
+  width: 380px;
+  padding: 24px;
+  box-shadow: 0 20px 90px #46305d30;
+}
+.calendar h2 {
+  font-size: 19px;
+}
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22px 0 14px;
+  font-size: 13px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+.calendar-grid .weekday {
+  font-size: 10px;
+  color: #afa0bd;
+  padding: 7px;
+}
+.calendar-grid button {
+  position: relative;
+  background: transparent;
+  border-radius: 10px;
+  min-height: 38px;
+  font-size: 12px;
+}
+.calendar-grid button.selected {
+  background: #dcd0ed;
+  color: #70548e;
+}
+.calendar-grid button.today {
+  box-shadow: inset 0 0 0 1px #c8b5de;
+}
+.calendar-grid i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #a78abd;
+  bottom: 4px;
+  left: calc(50% - 1px);
+}
+.full {
+  width: 100%;
+  margin-top: 22px;
+}
+@media (min-width: 1400px) {
+  main {
+    padding-bottom: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .hero {
+    padding-top: 65px;
+  }
+}
+@media (max-width: 800px) {
+  .topbar {
+    padding: 0 25px;
+    height: 75px;
+  }
+  .topbar-caption {
+    display: none;
+  }
+  .hero-art {
+    margin-right: 0;
+    width: 230px;
+    transform: scale(0.85);
+  }
+  .hero h1 {
+    font-size: 37px;
+  }
+  .workspace {
+    gap: 16px;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+  .schedule-panel,
+  .checklist-panel,
+  .notes-panel {
+    padding: 18px;
+  }
+  .date-panel {
+    padding: 20px;
+  }
+  .section-heading {
+    flex-wrap: wrap;
+  }
+  .date-controls {
+    gap: 4px;
+  }
+  .section-heading .soft-button {
+    font-size: 10px;
+  }
+  .slot-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .slot-form label:last-of-type {
+    grid-column: 1/-1;
+  }
+  .small-label {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  main {
+    padding: 0 18px;
+  }
+  .topbar {
+    padding: 0 22px;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  .local-badge {
+    font-size: 9px;
+  }
+  .hero {
+    padding: 35px 2px 28px;
+    position: relative;
+    min-height: 225px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    letter-spacing: -1.5px;
+  }
+  .hero p {
+    font-size: 11px;
+    max-width: 220px;
+  }
+  .hero .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.6px;
+  }
+  .hero-art {
+    position: absolute;
+    right: -65px;
+    top: 25px;
+    transform: scale(0.58);
+    opacity: 0.65;
+    z-index: -1;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .date-heading {
+    align-items: flex-start;
+  }
+  .date-heading h2 {
+    font-size: 17px;
+  }
+  .date-heading .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .date-controls {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 165px;
+  }
+  .date-controls .soft-button {
+    font-size: 10px;
+    padding: 7px 8px;
+  }
+  .date-controls .icon-button {
+    min-width: 22px;
+  }
+  .week-strip {
+    gap: 3px;
+    margin-top: 14px;
+  }
+  .day-button {
+    padding: 10px 0 5px;
+  }
+  .day-button strong {
+    font-size: 17px;
+  }
+  .date-panel {
+    padding: 18px 14px 13px;
+  }
+  .notes-panel {
+    order: 1;
+  }
+  aside {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .progress-panel {
+    order: 1;
+  }
+  .quote {
+    order: 2;
+  }
+  .timeline {
+    min-height: 220px;
+  }
+  footer {
+    font-size: 8px;
+    line-height: 1.8;
+    margin-top: 30px;
+  }
+  .calendar {
+    padding: 20px;
+  }
+  .progress-ring {
+    width: 120px;
+    height: 120px;
+  }
+  .task-actions .icon-button {
+    min-width: 30px;
+    min-height: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
