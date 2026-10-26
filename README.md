@@ -1,4 +1,4 @@
-# Ethereal Schedule & Task Manager
+# Desktop app Schedule & Task Manager
 
 A calm, responsive daily planner built with React and TypeScript. Frosted-glass panels, pastel glows, and a week strip keep your plans in one personal workspace.
 
