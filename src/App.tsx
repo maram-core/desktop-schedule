@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import DesktopControls from "./DesktopControls";
 
 type Task = { id: string; title: string; done: boolean; children: Task[] };
 type Slot = {
@@ -355,11 +356,15 @@ function App() {
   weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7));
   return (
     <div className="app-shell">
+      <DesktopControls />
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="ambient ambient-three" />
       <header className="topbar">
-        <a className="brand" href="/">
+        <button
+          className="brand brand-home"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
           <img
             className="brand-icon"
             src={`${process.env.PUBLIC_URL}/ethereal.svg`}
@@ -368,7 +373,7 @@ function App() {
           <span>
             ethereal<span className="brand-dot">.</span>
           </span>
-        </a>
+        </button>
         <span className="topbar-caption">A little clarity. A little calm.</span>
         <div className="local-badge">
           <span /> Your personal space

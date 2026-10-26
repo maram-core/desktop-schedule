@@ -901,3 +901,8 @@ footer [role="status"] {
     scroll-behavior: auto !important;
   }
 }
+
+.brand-home {
+  background: transparent;
+  padding: 0;
+}

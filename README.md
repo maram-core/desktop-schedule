@@ -34,3 +34,52 @@ npm run build
 ```
 
 The tests cover nested completion, local persistence, daily isolation, calendar navigation, time validation, deletion, and invalid-storage recovery. Production output is written to `build/` and can be hosted by a static web server. Google Fonts are optional; system sans-serif fonts provide a fallback.
+
+## Desktop app (Electron)
+
+Use Node.js **22.12 or newer** (Node 24 is recommended). Install development dependencies with `npm ci`.
+
+```sh
+# Build React and launch a standalone desktop window (no web server needed)
+npm run electron:start
+
+# Or develop with React hot reload and Electron together, using port 3000
+npm run electron:dev
+```
+
+Close any existing web development server on port 3000 before using `electron:dev`. Closing the Electron process also stops its development server. The browser-only workflow (`npm start`) remains available; desktop controls only appear inside Electron.
+
+The desktop toolbar provides:
+
+- **Always on top:** pin or unpin the window immediately.
+- **Frameless window:** switch between a draggable custom glass title bar with minimize/maximize/close controls and a native OS frame.
+- **Soft solid:** resizable pastel window, available on every platform.
+- **Transparent:** sets Electron's `transparent: true`, enables the frameless window, and makes the page translucent. Transparent windows have a fixed size and cannot maximize, following Electron's platform limitations. Resize in solid mode before switching to transparency.
+- **Native blur:** macOS `vibrancy: 'under-window'` or Windows 11 (build 22621+) `backgroundMaterial: 'acrylic'`. This option is disabled on unsupported systems. Linux transparency and rounded corners depend on the desktop compositor; native desktop blur is not available there. Older Windows versions may display square window corners.
+
+Changing appearance or frame briefly recreates the window. Window preferences are stored in `window-preferences.json` in Electron's user-data directory. Schedule data stays in that application's local storage across window changes and launches. The desktop app and browser development server have separate storage; existing browser plans are not automatically imported. Uninstalling or clearing the desktop app's profile can remove plans.
+
+The renderer runs with Node integration disabled, context isolation and sandboxing enabled. A small preload bridge exposes only window actions and validated preferences; remote navigation and permission requests are blocked.
+
+### Installers
+
+```sh
+# On Windows: build the x64 NSIS installer (.exe)
+npm run dist:win
+
+# On macOS: build a disk image (.dmg) for the build machine's architecture
+npm run dist:mac
+# Choose Apple Silicon or Intel explicitly when needed:
+npm run dist:mac -- --arm64
+npm run dist:mac -- --x64
+
+# On Linux: build an AppImage
+npm run dist:linux
+
+# Create an unpacked app for the current platform, without an installer
+npm run desktop:pack
+```
+
+Artifacts are written to `dist/`, using the Ethereal app icon. `npm run dist` builds the default target for the current platform. Build Windows installers on Windows and DMGs on macOS; this Linux environment does not validate their native appearance or installation. Electron supports Windows 10+, macOS 13+, and supported modern Linux distributions. Native blur requires the newer Windows version noted above.
+
+Local unsigned installers can be built without signing credentials. Signing/notarization for distribution requires your own platform certificates and electron-builder signing configuration. Build outputs, dependencies, and signing credentials are not committed.
